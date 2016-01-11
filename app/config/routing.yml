@@ -1,0 +1,15 @@
+client:
+    resource: "@ClientBundle/Resources/config/routing.yml"
+    prefix:   /
+
+terminal:
+    resource: "@TerminalBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
