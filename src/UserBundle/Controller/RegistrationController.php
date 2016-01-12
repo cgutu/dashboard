@@ -45,6 +45,6 @@ class RegistrationController extends Controller
         // );
 
 
-return $this->render('UserBundle:registration:register.html.twig',  array('form' => $form->createView()));
+return $this->render('UserBundle:Registration:register.html.twig',  array('form' => $form->createView()));
     }
 }
