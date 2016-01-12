@@ -19,6 +19,10 @@ class AppKernel extends Kernel
             new UserBundle\UserBundle(),
             new TerminalBundle\TerminalBundle(),
             new ClientBundle\ClientBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new HomepageBundle\HomepageBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new MenuBundle\MenuBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
@@ -26,6 +30,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 
         return $bundles;

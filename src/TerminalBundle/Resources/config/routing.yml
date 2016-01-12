@@ -1,3 +1,3 @@
 terminal_homepage:
-    path:     /
+    path:     /terminal
     defaults: { _controller: TerminalBundle:Default:index }

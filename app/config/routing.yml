@@ -1,3 +1,11 @@
+menu:
+    resource: "@MenuBundle/Resources/config/routing.yml"
+    prefix:   /
+
+homepage:
+    resource: "@HomepageBundle/Resources/config/routing.yml"
+    prefix:   /
+
 client:
     resource: "@ClientBundle/Resources/config/routing.yml"
     prefix:   /
