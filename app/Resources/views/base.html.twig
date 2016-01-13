@@ -9,18 +9,49 @@
             href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
     </head>
     <body>
-      <!--   {{ knp_menu_render('MenuBundle:Builder:mainMenu') }} -->
-      
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            {{ knp_menu_render('MenuBundle:Builder:mainMenu') }}
+<!--         {{ knp_menu_render('MenuBundle:Builder:mainMenu') }}  -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Wynd Terminal Dashboard</a>
         </div>
-    </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          {% if app.user %}
+            {{ knp_menu_render('MenuBundle:Builder:userMenu') }} 
+
+          {% else %}
+            {{ knp_menu_render('MenuBundle:Builder:mainMenu') }} 
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <!-- if user connected active the side bar -->
+
+     {% if app.user %}
+     <div class="col-sm-3 col-md-2 sidebar">
+          {{ knp_menu_render('MenuBundle:Builder:sideBar') }} 
+        </div>
+     {% endif %}
+  
+
     <div class="content" style="margin-top: 60px;">
+         
        {% block body %}{% endblock %}
 
     </div>   
 
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+         <link rel="stylesheet"
+            href="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}">
+            <link rel="stylesheet"
+            href="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}">
+            {% endblock %}
     </body>
 </html>

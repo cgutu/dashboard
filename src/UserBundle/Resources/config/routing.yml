@@ -1,6 +1,6 @@
 user_homepage:
     path:     /profil
-    defaults: { _controller: UserBundle:Default:index }
+    defaults: { _controller: UserBundle:Profil:profil }
 user_registration:
     path:     /register
     defaults: { _controller: UserBundle:Registration:register }
@@ -11,3 +11,6 @@ login_route:
 login_check:
     path:     /login_check
     defaults: { _controller: UserBundle:Security:login_check }
+logout:
+    pattern:   /logout
+    defaults:  { _controller: UserBundle:Security:logout }

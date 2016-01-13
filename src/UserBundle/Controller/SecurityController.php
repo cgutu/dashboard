@@ -39,4 +39,17 @@ class SecurityController extends Controller
         // this controller will not be executed,
         // as the route is handled by the Security system
     }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logoutAction()
+    {
+
+    $request = $this->getRequest();
+    $session = $request->getSession();
+    $session->remove();
+    
+    return $this->render('UserBundle:security:logout.html.twig');
+    }
 }

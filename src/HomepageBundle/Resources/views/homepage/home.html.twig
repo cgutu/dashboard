@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-	WELCOME
+	{% if app.user %}
+		<h1>Bonjour {{ app.user.username }} </h1>
+	{% else %}
+		<h1>WELCOME</h1>
+ 	{% endif %}
 {% endblock %}
