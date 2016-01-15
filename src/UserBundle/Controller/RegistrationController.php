@@ -30,7 +30,7 @@ class RegistrationController extends Controller
                 ->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
 
-            $role->setName();
+            $role->setName($user->getUsername());
             $role->setRole('ADMIN');
             $user->addRole($role);
 
