@@ -2,8 +2,9 @@
 
 {% block body %}
 	{% if app.user %}
-		<h1>Bonjour {{ app.user.username }} </h1>
+		<h1 class="page-header">Bonjour {{ app.user.username }} </h1>
 	{% else %}
-		<h1>WELCOME</h1>
+		<h1 class="page-header">WELCOME</h1>
+		<img src="{{ asset('bundles/dashboard/images/bg.png') }}">
  	{% endif %}
 {% endblock %}

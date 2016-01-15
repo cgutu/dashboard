@@ -7,6 +7,8 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet"
             href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+            <link rel="stylesheet"
+            href="{{ asset('bundles/dashboard/css/dashboard.css') }}">
     </head>
     <body>
 <!--         {{ knp_menu_render('MenuBundle:Builder:mainMenu') }}  -->
@@ -23,10 +25,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           {% if app.user %}
-            {{ knp_menu_render('MenuBundle:Builder:userMenu') }} 
+            {{ knp_menu_render('MenuBundle:Builder:userMenu', {'currentClass': 'active'}) }} 
 
           {% else %}
-            {{ knp_menu_render('MenuBundle:Builder:mainMenu') }} 
+            {{ knp_menu_render('MenuBundle:Builder:mainMenu', {'currentClass': 'active'}) }} 
           {% endif %}
         </div>
       </div>
@@ -36,16 +38,18 @@
 
      {% if app.user %}
      <div class="col-sm-3 col-md-2 sidebar">
-          {{ knp_menu_render('MenuBundle:Builder:sideBar') }} 
+          {{ knp_menu_render('MenuBundle:Builder:sideBar', {'currentClass': 'active'}) }} 
         </div>
      {% endif %}
   
 
-    <div class="content" style="margin-top: 60px;">
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="container">
          
        {% block body %}{% endblock %}
 
-    </div>   
+    </div> 
+  </div>  
 
         {% block javascripts %}
          <link rel="stylesheet"

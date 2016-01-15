@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -41,14 +42,30 @@ class User implements UserInterface, \Serializable
      */
     private $email;
 
+    //  *
+    //  * @ORM\Column(type="string", length=60)
+     
+    // private $roles;
+
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
 
+     /**
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
+     * @ORM\JoinTable(name="user_role",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
+     * )
+     *
+     */  
+    public $roles;
+
     public function __construct()
     {
         $this->isActive = true;
+        $this->roles = new ArrayCollection();
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid(null, true));
     }
@@ -70,7 +87,6 @@ class User implements UserInterface, \Serializable
     {
         $this->email = $email;
     }
-
     public function getSalt()
     {
         // you *may* need a real salt depending on your encoder
@@ -97,11 +113,29 @@ class User implements UserInterface, \Serializable
         $this->plainPassword = $password;
     }
 
+    // public function getRoles()
+    // {
+    //     return array('ROLE_USER');
+    // }
+
+     /**
+      * Add roles
+      *
+      * @param \UserBundle\Entity\Role $roles
+      * @return User
+      */
+     public function addRole(\UserBundle\Entity\Role $roles) {
+          $this->roles[] = $roles;
+          $roles->addUser($this);
+
+          return $this;
+     }
+
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return $this->roles->toArray();
     }
-
+ 
     public function eraseCredentials()
     {
     }

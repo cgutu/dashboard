@@ -17,7 +17,6 @@ class Builder implements ContainerAwareInterface
 		$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
         $menu->addChild('Home', array('route' => 'homepage'));
         $menu->addChild('Login', array('route' => 'login_route'));
-        $menu->addChild('Register', array('route' => 'user_registration'));
 
         return $menu;
     }

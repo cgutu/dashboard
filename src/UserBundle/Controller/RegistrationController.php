@@ -5,6 +5,7 @@ namespace UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use UserBundle\Form\UserType;
+use UserBundle\Entity\Role;
 use UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,6 +19,7 @@ class RegistrationController extends Controller
     {
         // 1) build the form
         $user = new User();
+        $role = new Role();
         $form = $this->createForm(UserType::class, $user);
 
         // 2) handle the submit (will only happen on POST)
@@ -28,21 +30,18 @@ class RegistrationController extends Controller
                 ->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
 
+            $role->setName();
+            $role->setRole('ADMIN');
+            $user->addRole($role);
+
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();
+            $em->persist($role);
             $em->persist($user);
             $em->flush();
 
-            // ... do any other work - like send them an email, etc
-            // maybe set a "flash" success message for the user
-
             return $this->redirectToRoute('login_route');
         }
-
-        // return $this->render(
-        //     'registration/register.html.twig',
-        //     array('form' => $form->createView())
-        // );
 
 
 return $this->render('UserBundle:Registration:register.html.twig',  array('form' => $form->createView()));
