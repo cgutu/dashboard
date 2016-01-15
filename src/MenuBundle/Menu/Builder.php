@@ -26,10 +26,7 @@ class Builder implements ContainerAwareInterface
         $menu = $factory->createItem('root');
 
         $menu->setChildrenAttribute('class', 'nav nav-sidebar');
-        $menu->addChild('Realtime', array('route' => 'homepage'));
-
-        $menu->addChild('Status', array('route' => 'login_route'));
-        $menu->addChild('Position', array('route' => 'user_registration'));
+        $menu->addChild('Create user', array('route' => 'user_registration'));
 
         return $menu;
     }

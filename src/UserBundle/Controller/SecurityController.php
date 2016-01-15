@@ -5,6 +5,8 @@ namespace UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class SecurityController extends Controller
 {
@@ -29,6 +31,9 @@ class SecurityController extends Controller
             'error'         => $error,
         )
     );
+
+       // $rq = Request::create('http://5.196.44.136/wyndTapi/api/user/get', 'GET', array('username' => 'test', 'password' => 'test'));
+       //   $headers = $rq->headers->all();
 }
 
     /**

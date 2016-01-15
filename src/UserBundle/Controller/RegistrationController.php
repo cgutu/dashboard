@@ -31,7 +31,7 @@ class RegistrationController extends Controller
             $user->setPassword($password);
 
             $role->setName($user->getUsername());
-            $role->setRole('ADMIN');
+            $role->setRole('USER');
             $user->addRole($role);
 
             // 4) save the User!
@@ -45,5 +45,18 @@ class RegistrationController extends Controller
 
 
 return $this->render('UserBundle:Registration:register.html.twig',  array('form' => $form->createView()));
+    }
+
+    public function addUser(Request $request, User $user, Role $role){
+
+        $request = Request::create(
+            'http://5.196.44.136/wyndTapi/api/user/add/', 
+            'POST', 
+            array('username' => $user->getUsername(),
+                  'password' => $user->getPlainPassword(),
+                  'email' => $user->getEmail()
+            )
+        );
+
     }
 }

@@ -12,7 +12,9 @@ security:
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
-            memory: ~
+            memory: 
+                users:
+                    admin: { password: test, roles: 'ROLE_ADMIN' }
         our_db_provider:
             entity:
                 class: UserBundle:User

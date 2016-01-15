@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\HttpFoundation\Request;
 
 class UserType extends AbstractType
 {
@@ -22,7 +23,9 @@ class UserType extends AbstractType
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password'),
-            ));
+            ))
+            ->add('entity', TextType::class)
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -30,5 +33,10 @@ class UserType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'UserBundle\Entity\User',
         ));
+    }
+
+    public function getRoles(Request $request)
+    {
+
     }
 }

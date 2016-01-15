@@ -42,6 +42,11 @@ class User implements UserInterface, \Serializable
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="string", length=60, unique=true)
+     */
+    private $entity;
+
     //  *
     //  * @ORM\Column(type="string", length=60)
      
@@ -82,11 +87,19 @@ class User implements UserInterface, \Serializable
     {
         return $this->email;
     }
-
+     public function getEntity()
+    {
+        return $this->entity;
+    }
+    public function setEntity($entity)
+    {
+        $this->entity = $entity;
+    }
     public function setEmail($email)
     {
         $this->email = $email;
     }
+
     public function getSalt()
     {
         // you *may* need a real salt depending on your encoder
